@@ -25,9 +25,17 @@ setup(name='collective.piwik.core',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.registry'
+          'plone.app.registry',
+          'plone.api'
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+              'Products.PloneTestCase',
+              'unittest2',
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
 

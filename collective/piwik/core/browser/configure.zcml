@@ -10,6 +10,13 @@
       layer=".interfaces.IPiwikCore"
       />
 
+  <browser:viewlet
+      layer="collective.piwik.core.browser.interfaces.IPiwikCore"
+      name="collective.piwik.core.PiwikPagesTracViewlet"
+      manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+      permission="zope2.View"
+      class=".views.PiwikPagesTracViewlet"
+        />
 
 </configure>
 

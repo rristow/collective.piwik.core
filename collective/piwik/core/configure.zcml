@@ -26,7 +26,7 @@
       description="Uninstall the core package for analytics support using Piwik"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-    
+
     <!-- Control panel -->
     <browser:page
         name="piwik-settings"
@@ -34,9 +34,8 @@
         class=".controlpanel.PiwikControlPanelView"
         permission="cmf.ManagePortal"
         />
-        
-  <subscriber handler=".subscribers.updateTrackingCode" />
-        
+
+<!--  <subscriber handler=".subscribers.updateTrackingCode" /> -->
 
 </configure>
 

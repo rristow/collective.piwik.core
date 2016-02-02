@@ -1,4 +1,12 @@
+<?xml version="1.0"?>
 <registry>
-    <records interface="collective.piwik.core.interfaces.IPiwikSettings" />
-</registry>
+  <records interface="collective.piwik.core.interfaces.IPiwikSettings"
+           prefix="collective.piwik.core">
 
+    <value key="piwik_server">http://demo.piwik.org</value>
+    <value key="piwik_siteid">1</value>
+    <value key="piwik_key">anonymous</value>
+    <value key="piwik_script_anonymous"></value>
+    <value key="piwik_script_logged"></value>
+  </records>
+</registry>
