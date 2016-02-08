@@ -1,7 +1,5 @@
-from zope.interface import Interface
-from z3c.form import interfaces
 from zope import schema
-from zope.interface import Interface
+
 from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface
 

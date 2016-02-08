@@ -1,15 +1,15 @@
+from zope.interface import Invalid
+from zope.i18nmessageid import MessageFactory
+
 from plone.app.registry.browser import controlpanel
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.form.interfaces import WidgetActionExecutionError
-from zope.interface import Invalid
-from z3c.form import form, button
+from z3c.form import button
 from Products.statusmessages.interfaces import IStatusMessage
-
 from collective.piwik.core.interfaces import IPiwikSettings
 from collective.piwik.core.interfaces import PIWIK_CODE_ANONYMOUS
 from collective.piwik.core.interfaces import PIWIK_CODE_LOGGED
 
-from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('plone')
 
 
@@ -37,7 +37,7 @@ class PiwikSettingsSettingsEditForm(controlpanel.RegistryEditForm):
     def applyChanges(self, data):
         super(PiwikSettingsSettingsEditForm, self).applyChanges(data)
         if data["piwik_server"]:
-            if not data["piwik_server"].endswith('/'):
+            if not data["piwik_server"].endswith(u"/"):
                 data["piwik_server"]+=u"/"
         else:
             raise WidgetActionExecutionError("piwik_server", Invalid(u"Please informe the URI"))
