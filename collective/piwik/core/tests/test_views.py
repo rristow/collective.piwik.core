@@ -6,7 +6,6 @@ from plone import api
 from zope.component import getUtility
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-
 from plone.app.testing import logout
 
 from plone.registry.interfaces import IRegistry
@@ -60,6 +59,16 @@ class ViewTest(unittest.TestCase):
                                   lastname=self.VARS_TEST_LOGGED[u"member_lastname"],
                                   firstname=self.VARS_TEST_LOGGED[u"member_firstname"])
 
+
+    def test_view_disabled(self):
+        # configure
+        SCRIPT = U"PIWIK_SCRIPT_DISABLED"
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(IPiwikSettings, prefix="collective.piwik.core")
+        settings.piwik_script_logged = SCRIPT
+        settings.piwik_enabled = False
+        self.assertFalse(SCRIPT in self.page())
+
     def test_view_anonymous(self):
         logout()
 
@@ -70,6 +79,7 @@ class ViewTest(unittest.TestCase):
         # configure
         registry = getUtility(IRegistry)
         settings = registry.forInterface(IPiwikSettings, prefix="collective.piwik.core")
+        settings.piwik_enabled = True
         settings.piwik_server = self.VARS_TEST_ANONYMOUS[u"piwik_server"]
         settings.piwik_siteid = self.VARS_TEST_ANONYMOUS[u"piwik_siteid"]
         settings.piwik_script_logged = u""
@@ -89,6 +99,7 @@ class ViewTest(unittest.TestCase):
         # configure
         registry = getUtility(IRegistry)
         settings = registry.forInterface(IPiwikSettings, prefix="collective.piwik.core")
+        settings.piwik_enabled = True
         settings.piwik_server = self.VARS_TEST_LOGGED[u"piwik_server"]
         settings.piwik_siteid = self.VARS_TEST_LOGGED[u"piwik_siteid"]
         settings.piwik_script_logged = (self.SCRIPT_TEST%script_vars)+"%%"

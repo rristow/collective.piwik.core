@@ -48,6 +48,13 @@ PIWIK_CODE_LOGGED = u"""
 class IPiwikSettings(Interface):
     """Piwik settings."""
 
+    piwik_enabled = schema.Bool(
+            title=_(u"Enabled"),
+            description=_(u"Enabled Piwik statistics"),
+            required=True,
+            default=False,
+        )
+
     piwik_server = schema.TextLine(title=_(u"Piwik server URL"),
                                 description=u'Where is your piwik located? e.g. http://demo.piwik.org ',
                                 required=True,

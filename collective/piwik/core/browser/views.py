@@ -23,6 +23,9 @@ class PiwikPagesTracViewlet(ViewletBase):
             registry = getUtility(IRegistry)
             settings = registry.forInterface(IPiwikSettings, prefix="collective.piwik.core")
 
+            if not settings.piwik_enabled:
+                return ""
+
             # get the script
             pmembership = api.portal.get_tool(name='portal_membership')
             if not pmembership.isAnonymousUser() and settings.piwik_script_logged:
