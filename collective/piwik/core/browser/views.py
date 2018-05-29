@@ -10,6 +10,10 @@ from plone.app.layout.viewlets.common import ViewletBase
 from plone.registry.interfaces import IRegistry
 from collective.piwik.core.utils import DefaultDict
 from collective.piwik.core.interfaces import IPiwikSettings
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Acquisition import aq_inner
+
 
 logger = logging.getLogger('collective.piwik.core')
 
@@ -68,3 +72,14 @@ class PiwikPagesTracViewlet(ViewletBase):
         except Exception, detail:
             logger.error("error rendering PiwikPagesTracViewlet: %s"%detail)
             raise
+
+class OptOutCookie(BrowserView):
+    """ Manage the tokens  """
+    template = ViewPageTemplateFile('opt-out-cookie.pt')
+
+    def __call__(self):
+        context = aq_inner(self.context)
+        request = context.REQUEST
+        return self.template()
+
+

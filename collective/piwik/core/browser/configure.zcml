@@ -18,5 +18,11 @@
       class=".views.PiwikPagesTracViewlet"
         />
 
-</configure>
+  <browser:page
+      name="opt-out-cookie"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".views.OptOutCookie"
+      permission="zope2.View"
+      />
 
+</configure>
